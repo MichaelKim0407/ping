@@ -10,6 +10,7 @@ from stream.io.std import stdin
 class Ping(object):
     def __init__(
             self,
+            *,
             raw_file: str,
             log_file: str,
             timeout_file: str,
@@ -92,12 +93,21 @@ class Ping(object):
             self.process_line(line)
 
 
-def main() -> None:
+def main(args=None) -> None:
+    import argparse
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--raw-log', type=str, default='raw.log')
+    parser.add_argument('--ping-log', type=str, default='ping.log')
+    parser.add_argument('--timeout-log', type=str, default='timeout.log')
+    parser.add_argument('--unknown-log', type=str, default='unknown.log')
+    args = parser.parse_args(args)
+
     ping = Ping(
-        'raw.log',
-        'ping.log',
-        'timeout.log',
-        'unknown.log',
+        raw_file=args.raw_log,
+        log_file=args.ping_log,
+        timeout_file=args.timeout_log,
+        unknown_file=args.unknown_log,
     )
     stdin.stream | strip | iter > ping
 
