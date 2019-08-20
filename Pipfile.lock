@@ -1,0 +1,52 @@
+{
+    "_meta": {
+        "hash": {
+            "sha256": "b0bf36dc3263ed7c195e1c5b633f108e2bde41d3f226668e9c5a2a2e735b44e7"
+        },
+        "pipfile-spec": 6,
+        "requires": {
+            "python_version": "3.6"
+        },
+        "sources": [
+            {
+                "name": "pypi",
+                "url": "https://pypi.org/simple",
+                "verify_ssl": true
+            }
+        ]
+    },
+    "default": {
+        "cached-property": {
+            "hashes": [
+                "sha256:3a026f1a54135677e7da5ce819b0c690f156f37976f3e30c5430740725203d7f",
+                "sha256:9217a59f14a5682da7c4b8829deadbfc194ac22e9908ccf7c8820234e80a1504"
+            ],
+            "index": "pypi",
+            "version": "==1.5.1"
+        },
+        "gimme-cached-property": {
+            "hashes": [
+                "sha256:de265df64c4d793fc29ac90330506750334d0e537a0d247875aedd3740b72224"
+            ],
+            "version": "==1.0"
+        },
+        "logical-func": {
+            "hashes": [
+                "sha256:332cec0076f097cec5b53602780e33174f146ff2db346d430f47023500572e92"
+            ],
+            "version": "==1.2"
+        },
+        "python-stream": {
+            "editable": true,
+            "git": "git://github.com/SelfHacked/python-stream.git",
+            "ref": "b987f773efa5d5cc6fdd6a267f3ffcc75042c5b2"
+        },
+        "returns-decorator": {
+            "hashes": [
+                "sha256:b380a31ee6b82106d6221b94b942b3a6a582c0c18cbb04f8adf8f82b2751543c"
+            ],
+            "version": "==1.1"
+        }
+    },
+    "develop": {}
+}
