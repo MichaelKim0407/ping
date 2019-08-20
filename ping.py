@@ -25,7 +25,7 @@ class Ping(object):
 
     @cached_property
     def _first_regex(self) -> typing.Pattern:
-        return re.compile(r'^PING (?P<host>[\d\w\.]+) \((?P<ip>[\d\.]+)\):')
+        return re.compile(r'^PING (?P<host>[\d\w.]+) \((?P<ip>[\d.]+)\):')
 
     @cached_property
     def _first_match(self) -> typing.Match:
@@ -50,7 +50,7 @@ class Ping(object):
 
     @cached_property
     def _success_regex(self) -> typing.Pattern:
-        return re.compile(rf'^\d+ bytes from {self.ip}: icmp_seq=(?P<seq>\d+) ttl=\d+ time=(?P<time>[\d\.]+) ms$')
+        return re.compile(rf'^\d+ bytes from {self.ip}: icmp_seq=(?P<seq>\d+) ttl=\d+ time=(?P<time>[\d.]+) ms$')
 
     def _log_success(self, seq: str, time: str) -> None:
         with open(self._log_file, 'a') as f:
