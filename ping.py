@@ -122,7 +122,7 @@ def main(args=None) -> None:
         unknown_file=args.unknown_log,
         stdout=args.stdout,
     )
-    stdin.stream | strip | iter > ping
+    stdin.stream | strip > ping
 
 
 if __name__ == '__main__':
