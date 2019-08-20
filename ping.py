@@ -15,6 +15,8 @@ class Ping(object):
             log_file: str,
             timeout_file: str,
             unknown_file: str,
+
+            stdout: bool,
     ):
         self._first_line = None
         self._t = None
@@ -23,6 +25,8 @@ class Ping(object):
         self._log_file = log_file
         self._timeout_file = timeout_file
         self._unknown_file = unknown_file
+
+        self._stdout = stdout
 
     @cached_property
     def _first_regex(self) -> typing.Pattern:
@@ -46,8 +50,11 @@ class Ping(object):
         return self._first_match.group('ip')
 
     def _log_raw(self, line: str) -> None:
+        out = f'{self._t}\t{line}'
         with open(self._raw_file, 'a') as f:
-            f.write(f'{self._t}\t{line}\n')
+            f.write(f'{out}\n')
+        if self._stdout:
+            print(out)
 
     @cached_property
     def _success_regex(self) -> typing.Pattern:
@@ -101,6 +108,11 @@ def main(args=None) -> None:
     parser.add_argument('--ping-log', type=str, default='ping.log')
     parser.add_argument('--timeout-log', type=str, default='timeout.log')
     parser.add_argument('--unknown-log', type=str, default='unknown.log')
+    parser.add_argument(
+        '--stdout',
+        action='store_true',
+        help='Also print raw log to stdout.',
+    )
     args = parser.parse_args(args)
 
     ping = Ping(
@@ -108,6 +120,7 @@ def main(args=None) -> None:
         log_file=args.ping_log,
         timeout_file=args.timeout_log,
         unknown_file=args.unknown_log,
+        stdout=args.stdout,
     )
     stdin.stream | strip | iter > ping
 
